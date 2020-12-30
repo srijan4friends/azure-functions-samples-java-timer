@@ -1,0 +1,16 @@
+{
+  "scriptFile" : "../azure-functions-samples-java-timer-1.0-SNAPSHOT.jar",
+  "entryPoint" : "com.functions.Function.functionHandler",
+  "bindings" : [ {
+    "type" : "timerTrigger",
+    "direction" : "in",
+    "name" : "timerInfo",
+    "schedule" : "*/30 * * * * *"
+  }, {
+    "type" : "queue",
+    "direction" : "out",
+    "name" : "$return",
+    "queueName" : "walkthrough",
+    "connection" : "AzureWebJobsStorage"
+  } ]
+}

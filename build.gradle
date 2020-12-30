@@ -1,0 +1,36 @@
+plugins {
+  id "com.microsoft.azure.azurefunctions" version "1.5.0"
+}
+apply plugin: 'java'
+apply plugin: "com.microsoft.azure.azurefunctions"
+
+group 'com.functions'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    implementation 'com.microsoft.azure.functions:azure-functions-java-library:1.4.0'
+    compile 'com.microsoft.sqlserver:mssql-jdbc:7.4.1.jre8'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
+    testImplementation 'org.mockito:mockito-core:3.3.3'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+azurefunctions {
+    resourceGroup = 'az-practice-rg1'
+    appName = 'az-practice-funcapp1'
+    pricingTier = 'Consumption'
+    region = 'centralus'
+    runtime {
+      os = 'linux'
+      javaVersion = '8'
+    }
+    localDebug = "transport=dt_socket,server=y,suspend=n,address=5005"
+}
